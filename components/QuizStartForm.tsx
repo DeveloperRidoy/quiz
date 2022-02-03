@@ -64,7 +64,7 @@ const QuizStartForm = () => {
         <label htmlFor="diifficulty" className="capitalize">select diifficulty</label> 
         <select name="diifficulty" id="diifficulty" className="border border-gray-400 rounded py-1 px-2 capitalize" value={data.difficulty} onChange={inputChange}>
           <option value="">any</option> 
-          {difficulties.map((difficulty, i) => <option value={difficulty} key={i}>{difficulty}</option> )}
+          {difficulties.map((difficulty, i) => <option value={data.difficulty} key={i}>{difficulty}</option> )}
         </select>
       </div>
       <div className="grid">
