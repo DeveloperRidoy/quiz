@@ -35,7 +35,7 @@ const QuizStartForm = () => {
       e.preventDefault();
       setState(state => ({ ...state, status: EStatus.LOADING }));
 
-      const response = await fetch(`${apiBaseUrl}?amount=${data.questionsCount}&category=${data.category}&diifficulty=${data.difficulty}&type=${data.type}`); 
+      const response = await fetch(`${apiBaseUrl}?amount=${data.questionsCount}&category=${data.category}&difficulty=${data.difficulty}&type=${data.type}`); 
   
       const questions = (await response.json()).results.map((question: IQuestion) => ({
         ...question, 
@@ -61,10 +61,10 @@ const QuizStartForm = () => {
         </select>
       </div>
       <div className="grid">
-        <label htmlFor="diifficulty" className="capitalize">select diifficulty</label> 
-        <select name="diifficulty" id="diifficulty" className="border border-gray-400 rounded py-1 px-2 capitalize" value={data.difficulty} onChange={inputChange}>
+        <label htmlFor="difficulty" className="capitalize">select difficulty</label> 
+        <select name="difficulty" id="difficulty" className="border border-gray-400 rounded py-1 px-2 capitalize" value={data.difficulty} onChange={inputChange}>
           <option value="">any</option> 
-          {difficulties.map((difficulty, i) => <option value={data.difficulty} key={i}>{difficulty}</option> )}
+          {difficulties.map((difficulty, i) => <option value={difficulty} key={i}>{difficulty}</option> )}
         </select>
       </div>
       <div className="grid">
