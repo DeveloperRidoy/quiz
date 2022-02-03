@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { EStatus, IQuestion, useStateContext } from "../context/StateContext";
+import { EStatus, useStateContext } from "../context/StateContext";
 
 const QuestionCard: React.FC = () => {
 

@@ -7,7 +7,7 @@ import { EStatus, useStateContext } from '../context/StateContext'
 
 export default function Home() {
 
-  const {state : {status, error}} = useStateContext();
+  const {state : {status, error, score}} = useStateContext();
 
   return (
     <>
@@ -22,7 +22,11 @@ export default function Home() {
           <>
             {status === EStatus.LOADING && <Spinner className='absolute top-1/2 -translate-y-1/2'/> }
             {status === EStatus.NOT_STARTED && <QuizStartForm/> }
-            {status === EStatus.STARTED && <QuestionCard/> }
+            {status === EStatus.STARTED && (
+              <div className='grid gap-2 text-center'>
+                <p className='font-semibold text-3xl text-white'>score: {score}</p>
+                <QuestionCard /></div> 
+            )}
             {status === EStatus.FINISHED && <ScoreCard/> }
           </>
         ) }
