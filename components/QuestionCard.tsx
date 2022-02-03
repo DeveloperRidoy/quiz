@@ -54,7 +54,9 @@ const QuestionCard: React.FC = () => {
                   : 'bg-blue-500 transition hover:bg-blue-600'
                 : currentQuestion.correct_answer === answer  
                   ? 'bg-green-500' 
-                  : 'bg-red-500'
+                  : QuestionState.answer === answer 
+                    ? 'bg-red-500' 
+                    : 'bg-blue-500 transition hover:bg-blue-600'
               : 'bg-blue-500 transition hover:bg-blue-600'
             }`}
             disabled={QuestionState.answered}
