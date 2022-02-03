@@ -71,7 +71,7 @@ const QuizStartForm = () => {
         <label htmlFor="type" className="capitalize">select type</label> 
         <select name="type" id="type" className="border border-gray-400 rounded py-1 px-2 capitalize" value={data.type} onChange={inputChange} >
           <option value="">any</option> 
-          {types.map((type, i) => <option value={type} key={i}>{type === EType.BOOLEAN ? 'true or false': type}</option> )}
+          {types.map((type, i) => <option value={type} key={i}>{type === EType.BOOLEAN ? 'true or false': 'multiple choice'}</option> )}
         </select>
       </div> 
       <button className="bg-blue-500 text-white py-1 px-5 capitalize rounded">start</button>

@@ -46,8 +46,7 @@ const Context = createContext<IContext>(InitialContext);
 
 export const useStateContext = () => useContext(Context);
 
-const StateContext: React.FC<ReactChild> = ({ children }) => {
-
+const StateContext: React.FC = ({children}) => {
   const [state, setState] = useState(InitialContext.state); 
 
   return <Context.Provider value={{state, setState}}>{children}</Context.Provider>
