@@ -17,7 +17,7 @@ export default function Home() {
       </Head>
       <div
         className="flex min-h-screen flex-col gap-20 items-center p-6" style={{ background: 'url(img/background.webp)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
-        <h1 className="text-4xl uppercase text-white font-fascinate">quiz</h1>
+        <h1 className="text-4xl uppercase text-white font-bold">quiz</h1>
         {error ? <div className="p-2 bg-red-500 text-white text-xl">{error}</div> : (
           <>
             {status === EStatus.LOADING && <Spinner className='absolute top-1/2 -translate-y-1/2'/> }
