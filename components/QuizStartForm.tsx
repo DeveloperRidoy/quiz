@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { EStatus, IQuestion, useStateContext } from "../context/StateContext";
+import { EStatus, IQuestion, useStateContext } from "../hoc/context/StateContext";
 import { apiBaseUrl } from "../utils/config";
 import {difficulties, EDifficulty, EType, questionCategories, types} from "../utils/settings";
 import shuffleArray from "../utils/shuffleArray";
@@ -24,7 +24,7 @@ const QuizStartForm = () => {
     difficulty: '', 
     type: ''
   }
-  const [data, setData] = useState<data>(initialData); 
+  const [data, setData] = useState<data>(initialData);
 
   const inputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
     setData(data => ({ ...data, [e.target.name]: e.target.value }));

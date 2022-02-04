@@ -1,5 +1,5 @@
 import React, { createContext, Dispatch, ReactChild, SetStateAction, useContext, useState } from "react";
-import { EDifficulty, EType } from "../utils/settings";
+import { EDifficulty, EType } from "../../utils/settings";
 
 export enum EStatus {
   NOT_STARTED = 'NOT_STARTED',

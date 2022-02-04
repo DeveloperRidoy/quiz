@@ -1,4 +1,4 @@
-import { EStatus, useStateContext } from "../context/StateContext";
+import { EStatus, useStateContext } from "../hoc/context/StateContext";
 
 const ScoreCard = () => {
   const { state: { score, questions }, setState } = useStateContext();

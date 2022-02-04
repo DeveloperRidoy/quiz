@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { EStatus, useStateContext } from "../context/StateContext";
+import { EStatus, useStateContext } from "../hoc/context/StateContext";
 
 const QuestionCard: React.FC = () => {
 
@@ -37,8 +37,6 @@ const QuestionCard: React.FC = () => {
 
   return (
     <div>
-
-    
     <div className="p-4 bg-white rounded max-w-[500px]">
       <p className="text-center">Question {questionNum}/{questions.length}</p>
       <h3 className="text-xl my-4" dangerouslySetInnerHTML={{__html:currentQuestion.question}}/> 

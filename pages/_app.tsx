@@ -1,11 +1,14 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import StateContext from '../context/StateContext'
+import StateContext from '../hoc/context/StateContext'
+import Layout from '../hoc/Layout'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <StateContext>
-      <Component {...pageProps} />
+    <StateContext> 
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </StateContext>
   )
 }
