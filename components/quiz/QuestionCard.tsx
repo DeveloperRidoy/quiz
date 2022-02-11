@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { EStatus, useStateContext } from "../hoc/context/StateContext";
+import { useQuizContext } from "../../hoc/context/QuizContext";
+import { EQuizActionType } from "../../utils/types/quiz";
 
 const QuestionCard: React.FC = () => {
 
-  const { state: {questions, questionNum }, setState } = useStateContext();
+  const { state: {questions, questionNum, score }, dispatch } = useQuizContext();
 
   interface IQState { 
     answer: string, 
@@ -22,16 +23,15 @@ const QuestionCard: React.FC = () => {
     
     const answerCorrect = currentQuestion.correct_answer === answer;
 
-     setQuestionState(state => ({...state, answer, answered: true, answerCorrect })); 
-     
-    const lastQuestion = questionNum === questions.length;
+    setQuestionState(state => ({ ...state, answer, answered: true, answerCorrect }));
     
-    setState(state => ({ ...state, score: answerCorrect ? state.score + 1: state.score, status: lastQuestion ? EStatus.FINISHED: state.status }));
+    // update score
+    dispatch({ type: EQuizActionType.UPDATE_SCORE, payload: { score: answerCorrect ? score + 1 : score } });
   }
 
   // go to next question
   const nextQuestion = (): void => {
-    setState(state => ({ ...state, questionNum: state.questionNum + 1 }));
+    dispatch({ type: EQuizActionType.NEXT_QUESTIN });
     setQuestionState(state => ({...state, answer: '', answered: false }));
   }
 
@@ -63,7 +63,13 @@ const QuestionCard: React.FC = () => {
         ))}
       </div> 
       </div>  
-       {QuestionState.answered && <button className="py-2 px-4 bg-white capitalize rounded mx-auto block mt-5" onClick={nextQuestion}>next question</button> }
+      {QuestionState.answered && (
+        <button
+          className="py-2 px-4 bg-white capitalize rounded mx-auto block mt-5"
+          onClick={nextQuestion}>
+          next question
+        </button>
+       ) }
       </div>
   );
 };

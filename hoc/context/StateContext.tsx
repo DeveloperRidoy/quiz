@@ -1,55 +1,52 @@
-import React, { createContext, Dispatch, ReactChild, SetStateAction, useContext, useState } from "react";
-import { EDifficulty, EType } from "../../utils/settings";
 
-export enum EStatus {
-  NOT_STARTED = 'NOT_STARTED',
-  LOADING = 'LOADING', 
-  STARTED = 'STARTED', 
-  FINISHED = 'FINISHED',
+import { createContext, Dispatch, useContext, useEffect, useReducer } from "react";
+import stateReducer from "../../reducers/stateReducer";
+import getInitialData from "../../utils/getInitialData";
+import { EToastTypes, IState, TStateAction } from "../../utils/types/state";
+
+
+
+interface ContextInterface { 
+  state: IState, 
+  dispatch: Dispatch<TStateAction>
 }
 
-export interface IQuestion  {
-  category: string,  
-  type: EType, 
-  difficulty: EDifficulty, 
-  question: string, 
-  correct_answer: string,  
-  incorrect_answers: string[],
-  answers: string[],
-}
-
-type TState = {
-  status: EStatus
-  questions: IQuestion[],
-  score: number, 
-  questionNum: number, 
-  error?: string
-}
-
-
-interface IContext {
-  state: TState, 
-  setState: Dispatch<SetStateAction<TState>>
-}
-
-const InitialContext: IContext = {
+const InitialContext: ContextInterface = {
   state: {
-    status: EStatus.NOT_STARTED,
-    questions: [], 
-    score: 0, 
-    questionNum: 1
-  }, 
-  setState: () => {}
+    scrollDisabled: false,
+    showSidebar: false,
+    toast: { show: false, type: EToastTypes.SUCCESS, timeout: 3000, text: '' },
+    auth: { loading: true, user: null },
+    ssr: false
+  },
+  dispatch: () => { }
 }
-
-const Context = createContext<IContext>(InitialContext); 
+const Context = createContext<ContextInterface>(InitialContext);
 
 export const useStateContext = () => useContext(Context);
 
-const StateContext: React.FC = ({children}) => {
-  const [state, setState] = useState(InitialContext.state); 
+const StateContext: React.FC<{ pageProps: any }> = ({ children, pageProps }) => { 
+    
+    // for ssr 
+    if (pageProps.ssr) {
+        InitialContext.state.ssr = true;
+        InitialContext.state.auth = {
+            loading: false, 
+            user: pageProps.user
+        };
+    }
 
-  return <Context.Provider value={{state, setState}}>{children}</Context.Provider>
-};
+    const [state, dispatch] = useReducer(stateReducer, InitialContext.state)
+
+    useEffect(() => {
+        if (InitialContext.state.ssr) return;
+        // get initial data for client side rendering 
+        getInitialData(dispatch)
+    }, [])
+
+  return (
+    <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
+  )
+}
 
 export default StateContext;

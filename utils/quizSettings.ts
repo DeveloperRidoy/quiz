@@ -1,3 +1,5 @@
+import { EQuestionDifficulty, EQuestionType } from "./types/quiz";
+
 type TQuestionCategories = {id: number, name: string}[]
 export const questionCategories: TQuestionCategories = [
     {id: 9, name: 'general knowledge'},
@@ -26,16 +28,9 @@ export const questionCategories: TQuestionCategories = [
     {id: 32, name: 'entertainment: cartoon & animations'},
 ]
 
-export enum EDifficulty {
-    EASY = 'easy', 
-    MEDIUM = 'medium', 
-    HARD = 'hard'
-}
-export const difficulties: EDifficulty[] = [EDifficulty.EASY, EDifficulty.MEDIUM, EDifficulty.HARD];
 
-export enum EType  {
-    MULTIPLE = 'multiple', 
-    BOOLEAN = 'boolean'
-} 
+export const difficulties: EQuestionDifficulty[] = [EQuestionDifficulty.EASY, EQuestionDifficulty.MEDIUM, EQuestionDifficulty.HARD];
 
-export const types: EType[] = [EType.MULTIPLE, EType.BOOLEAN];
+ 
+
+export const types: EQuestionType[] = [EQuestionType.MULTIPLE, EQuestionType.BOOLEAN];

@@ -14,3 +14,6 @@ const shuffleArray = <T>(array: T[]): T[] => {
 }
 
 export default shuffleArray;
+
+
+shuffleArray([1, 2,3,4])
