@@ -17,7 +17,6 @@ const stateReducer = (state: IState, action: TStateAction): IState => {
         
         case EStateActionType.SET_AUTH:
             return {...state, auth: action.payload.auth}
-    
         default:
             return state;
     }

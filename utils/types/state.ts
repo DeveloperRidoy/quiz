@@ -43,7 +43,7 @@ export enum EStateActionType {
 }
 
 interface IDefaultAction {
-  type: EStateActionType.OPEN_SIDEBAR | EStateActionType.CLOSE_SIDEBAR 
+  type: EStateActionType.OPEN_SIDEBAR | EStateActionType.CLOSE_SIDEBAR
 }
 
 interface IToggleToastAction {

@@ -47,7 +47,7 @@ const Options: React.FC<{closeOptions: () => void}> = ({closeOptions}) => {
   const { state: { auth }, dispatch } = useStateContext();
   const [loading, setLoading] = useState(false);
   const optionsRef = useRef<any>(null)
-
+  
   const logout = async () => {
     try {
       setLoading(true);
